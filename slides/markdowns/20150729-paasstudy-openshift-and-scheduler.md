@@ -85,7 +85,7 @@ class: center, middle
 
   - 利用可能ノードのフィルター
   - 条件を ***predicates*** で指定
-  - 例: Port が競合する Node を振るい落とす、要求したリソースの上限を超えている Node を振るい落とす
+  - 例: Port が競合する Node を振るい落とす、要求したリソースが上限を超えてしまう Node を振るい落とす
 
 --
 
@@ -165,7 +165,7 @@ class: center, middle
 - ServiceAffinity
  - Label の value に関係なく、指定した Label が定義されているノードにデプロイする
 
- - デプロイするPodに、デプロイするノードの Label が指定されていない場合、最初のpodは任意のノードにデプロイされる
+ - デプロイするPodに、デプロイ先ノードの Label が指定されていない場合、最初のpodは任意のノードにデプロイされる
 
  - それ以降のPodで最初のPodと同じサービスのPodについては、最初にデプロイしたノードと同じ Label のついたノードにデプロイする
 
@@ -181,7 +181,7 @@ class: center, middle
 
 - LeastRequestedPriority
 
-  - 既存のPodに要求されているリソースが最も少ないリソースのノードにデプロイされやすくする
+  - 既存のPodから要求されているリソースが最も少ないノードに、デプロイされやすくする
 
 ```area
    score = cpu((capacity - sum(requested)) * 10 / capacity)
@@ -191,7 +191,7 @@ class: center, middle
 
 - BalancedResourceAllocation
 
-  - 既存のPodが要求しているCPUとMemoryで偏りがないノードにデプロイされやすくする
+  - 既存のPodが要求しているCPUとMemoryで、偏りがないノードにデプロイされやすくする
 
 ```area
    fraction = sum(requested) / capacity
@@ -229,9 +229,9 @@ class: center, middle
 
 - ServiceAntiAffinity
 
- - 同一Labelグループ内で同一サービスのPodを分散させるようにする
+ - 同一Labelグループ内で同じサービスのPodを分散させるようにする
 
- - 詳細は使用例にて
+ - 後ほど具体例
 
 ---
 class: center, middle
@@ -303,7 +303,7 @@ class: center, middle
 
 - Scheduling できなかった Pod は ***Pending*** 状態
 
-- 状態を確認するには、 `oc get events` や `oc describe pod <POD名>`
+- 状態を確認するには、 `oc get events` や `oc describe pod <POD名>` で event を確認
 
 ```area
 Events:
