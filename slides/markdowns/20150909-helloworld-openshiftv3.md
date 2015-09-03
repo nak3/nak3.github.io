@@ -17,7 +17,7 @@ class: center, middle
 
   - S2I Build process
 
-  - Containers life
+  - Containers in the background
 
 ---
 # Who am I?
@@ -346,16 +346,16 @@ class: center middle
 ---
 class: center middle
 
-#3. Containers life
+#3. Containers in the background
 
 ---
-#3. Containers life
+#3. Containers in the background
 
 ![helloworld-process](./image/helloworld-process-updated-container.png)
 
 ---
 
-# Containers life
+# Containers in the background
 
 - ose-pod * 3
 
@@ -365,6 +365,16 @@ class: center middle
 
 - Pod (Hello World)
 
+
+```area
+[root@ose3-node1 ~]# docker ps -a
+2a2959d29670        172.30.255.87:5000/demo/helloworld-v3@sha256:e003bb1848e9e6519be1bb200d3e48358f4f56dbebb7f521f5284553a29d9afa   "/usr/local/sti/run"   3 minutes ago       Up 3 minutes                            k8s_helloworld-v3.e81e7ee8_helloworld-v3-1-w4z1b_demo_1810bbc1-522f-11e5-aab3-525400b33d1d_cf369d77
+0b86e1d93a0a        openshift3/ose-pod:v3.0.1.0                                                                                     "/pod"                 About a minute ago   Up About a minute                                   k8s_POD.3190e4a2_helloworld-v3-1-w4z1b_demo_1810bbc1-522f-11e5-aab3-525400b33d1d_e96a5c40
+a3f7003473bb        openshift3/ose-deployer:v3.0.1.0                                                                                "/usr/bin/openshift-   About a minute ago   Exited (0) 59 seconds ago                           k8s_deployment.3d017e40_helloworld-v3-1-deploy_demo_14f89e40-522f-11e5-aab3-525400b33d1d_5aaeddd7
+fe2e3a355f65        openshift3/ose-pod:v3.0.1.0                                                                                     "/pod"                 About a minute ago   Exited (0) 49 seconds ago                           k8s_POD.892ec37e_helloworld-v3-1-deploy_demo_14f89e40-522f-11e5-aab3-525400b33d1d_b272ae73
+5debbb36cab1        openshift3/ose-sti-builder:v3.0.1.0                                                                             "/usr/bin/openshift-   3 minutes ago        Exited (0) About a minute ago                       k8s_sti-build.2e52d9e_helloworld-v3-1-build_demo_add8c71e-522e-11e5-aab3-525400b33d1d_6e97fd75
+bf2935e0bd41        openshift3/ose-pod:v3.0.1.0                                                                                     "/pod"                 4 minutes ago        Exited (0) About a minute ago
+```
 ---
 # What is ose-pod?
 
@@ -378,13 +388,13 @@ class: center middle
 
   - Holding network endpoint
 
-```area
+```bash
 # docker ps |grep helloworld
 cec670f80d07        172.30.196.37:5000/default/helloworld-v3@sha256:df615cfb8c1a42703ff1d43aa39c582dab9be78c28b3509f4b6d06a1d4a0d84d   "/usr/local/sti/run"   About an hour ago   Up About an hour                        k8s_helloworld-v3.9f268c47_helloworld-v3-1-45xn7_default_f5ea369e-506b-11e5-b1ae-525400b5bdf9_d940ad00
 35a2d2271a00        openshift/ose-pod:v1.0.5                                                                                        "/pod"                 About an hour ago   Up About an hour                        k8s_POD.8786f5dc_helloworld-v3-1-45xn7_default_f5ea369e-506b-11e5-b1ae-525400b5bdf9_901ce512
 ```
 
-```area
+```sh
 # docker inspect cec670f80d07 |grep NetworkMode
         "NetworkMode": "container:35a2d2271a00bf44ee4dc684a785a02157ba587df54a390ca226ee36fef5230f",
 # docker inspect 35a2d2271a00 |grep NetworkMode
@@ -440,7 +450,37 @@ I0901 12:52:42.546507       1 recreate.go:143] Deployment helloworld-v3-1 succes
 
   - S2I build process
 
-  - Containers life
+  - Containers in the background
+
+---
+# Reference
+
+- OpenShift v3 Documentation
+
+  - https://docs.openshift.com/enterprise/3.0/getting_started/administrators.html
+
+- OpenShift Origin Source Code
+
+  - https://github.com/openshift/origin
+
+- source-to-image Source Code
+
+  - https://github.com/openshift/source-to-image
+
+- ose-pod / origin-pod Source Code
+
+  - https://github.com/openshift/origin/blob/master/images/pod/pod.go
+
+---
+# Reference
+
+- openshift-local-setup
+
+  - https://github.com/nak3/openshift-local-setup
+
+- custom-builder-debug
+
+  - https://github.com/nak3/custom-builder-for-test/tree/master/custom-builder-debug
 
 ---
 class: center middle
