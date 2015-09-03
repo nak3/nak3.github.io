@@ -28,7 +28,7 @@ class: center, middle
 
 - OpenShift Support Engineer
 
-- Fedora Project Package maintenr
+- Fedora Project Package maintainer
 
 - Emacs committer
 
