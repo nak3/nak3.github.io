@@ -261,6 +261,11 @@ class: center, middle
 # Demo
 
 ---
+# Demo
+
+![helloworld-process](./image/helloworld-process-updated-resource.png)
+
+---
 class: center, middle
 
 # 2. S2I Build process
