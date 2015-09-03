@@ -241,12 +241,15 @@ localStorage["OpenShiftLogLevel.main"] = "<log level>";
 
 - Example steps...
 
-  - step-1. Output to yaml
-  ```area
-  oc new-app <URL> -o yaml > output.yaml
-  ```
+  - step-1. Output to json
+```area
+oc new-app <URL> -o json > output.json
+```
 
-  - step-2. Make only one resources in yaml file
+  - step-2. Make only one resources in json file
+```area
+cat output.json  | jq [.items][0][0] > helloworldv3-imagestream.json
+```
 
   - step-3. Test with one resources
 
