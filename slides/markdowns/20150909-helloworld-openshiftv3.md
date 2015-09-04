@@ -13,7 +13,7 @@ class: center, middle
 
 - Behind the HelloWorld
 
-  - Resources
+  - Resource
 
   - S2I Build process
 
@@ -80,7 +80,7 @@ wget https://raw.githubusercontent.com/nak3/openshift-local-setup/master/openshi
 
 --
 
-- Step 2. Run scrpit (Origin Build & Run & Setup)
+- Step 2. Run script (Origin Build & Run & Setup)
 
 ```area
 bash openshift-local-setup.sh
@@ -194,10 +194,10 @@ d. Created Image Stream
 ---
 class: center, middle
 
-# 1. Resources
+# 1. Resource
 
 ---
-# 1. Resources
+# 1. Resource
 
 ![helloworld-process](./image/helloworld-process-updated-resource.png)
 
@@ -246,12 +246,12 @@ localStorage["OpenShiftLogLevel.main"] = "<log level>";
 oc new-app <URL> -o json > output.json
 ```
 
-  - step-2. Make only one resources in json file
+  - step-2. Make only one resource in json file
 ```area
-cat output.json  | jq [.items][0][0] > helloworldv3-imagestream.json
+cat output.json  | jq .items[0] > helloworldv3-imagestream.json
 ```
 
-  - step-3. Test with one resources
+  - step-3. Test with one resource
 
   - step-4. Check the log
 
@@ -446,7 +446,7 @@ I0901 12:52:42.546507       1 recreate.go:143] Deployment helloworld-v3-1 succes
 
 - Behind the Hello World
 
-  - Resources
+  - Resource
 
   - S2I build process
 
