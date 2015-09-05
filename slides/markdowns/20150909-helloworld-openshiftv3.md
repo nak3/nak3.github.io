@@ -13,7 +13,7 @@ class: center, middle
 
 - Behind the HelloWorld
 
-  - Resource
+  - Resources
 
   - S2I Build process
 
@@ -43,12 +43,12 @@ class: center, middle
 --
 - **From**
 
-  - OpenShift origin/ose source code
+  - OpenShift enterprise/origin source code build
 
 --
 - **Via**
 
-  - Router&Registry setup
+  - Router & Registry setup
 
 --
 - **To**
@@ -89,7 +89,6 @@ bash openshift-local-setup.sh
 ---
 # Hello World in 3min
 
---
 - Setp 3. Setup client
 
 ```area
@@ -110,7 +109,6 @@ oc new-project demoproject
 ---
 # Hello World in 3min
 
---
 - Step 5. Create new application
 
 ```area
@@ -127,7 +125,6 @@ Hello World!
 ---
 # Hello World in 3min
 
---
 - Step -7. Routing test
 
 ```areaa
@@ -145,6 +142,8 @@ Hello World!
 - You can download the setup script
 
   - https://github.com/nak3/openshift-local-setup
+
+  - Needs Go > 1.4 and docker > 1.6
 
   - Tested with RHEL7/Fedora21/CentOS7
 
@@ -194,10 +193,10 @@ d. Created Image Stream
 ---
 class: center, middle
 
-# 1. Resource
+# 1. Resources
 
 ---
-# 1. Resource
+# 1. Resources
 
 ![helloworld-process](./image/helloworld-process-updated-resource.png)
 
@@ -237,21 +236,24 @@ localStorage["OpenShiftLogLevel.main"] = "<log level>";
 ---
 # Tips for resources debug/hack
 
-- ###Devide resources###
+- ###Divide resources###
 
 - Example steps...
 
   - step-1. Output to json
 ```area
-oc new-app <URL> -o json > output.json
+oc new-app https://github.com/nak3/helloworld-v3.git -o json > resources.json
 ```
 
   - step-2. Make only one resource in json file
 ```area
-cat output.json  | jq .items[0] > helloworldv3-imagestream.json
+cat output.json  | jq .items[0] > imagestream.json
 ```
 
   - step-3. Test with one resource
+```area
+oc create -f imagestream.json
+```
 
   - step-4. Check the log
 
@@ -302,9 +304,9 @@ class: center, middle
 ---
 # Custom-builder-debug
 
-- You can download the script
+- You can download from here
 
-https://github.com/nak3/custom-builder-for-test/tree/master/custom-builder-debug
+  - https://github.com/nak3/custom-builder-for-test/tree/master/custom-builder-debug
 
 - Just run for test
 
@@ -341,7 +343,7 @@ class: center middle
 ---
 class: center middle
 
-# Just one more knowledge
+# Just one more thing
 
 ---
 class: center middle
@@ -382,7 +384,7 @@ bf2935e0bd41        openshift3/ose-pod:v3.0.1.0                                 
 
 - Each pod has one `ose-pod`
 
-- It has Two functions only
+- Only two functions
 
   - IPC control - [images/pod/pod.go](https://github.com/openshift/origin/blob/master/images/pod/pod.go)
 
@@ -411,6 +413,8 @@ cec670f80d07        172.30.196.37:5000/default/helloworld-v3@sha256:df615cfb8c1a
    - docker strategy ... docker-builder
 
    - custom strategy ... custom-builder
+
+- build process is run in the builder container
 
 - ≒ `helloworld-v3-1-build (pod)`
 
@@ -446,7 +450,7 @@ I0901 12:52:42.546507       1 recreate.go:143] Deployment helloworld-v3-1 succes
 
 - Behind the Hello World
 
-  - Resource
+  - Resources
 
   - S2I build process
 
