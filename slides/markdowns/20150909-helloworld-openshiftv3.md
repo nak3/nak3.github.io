@@ -133,9 +133,6 @@ sudo echo "192.168.122.3  helloworld-v3.example.com" >> /etc/hosts
 curl helloworld-v3.example.com
 Hello World!
 ```
-
-**NOTE** : You need to register DNS in production env
-
 ---
 # Hello World in 3min
 
@@ -145,7 +142,7 @@ Hello World!
 
   - Needs Go > 1.4 and docker > 1.6
 
-  - Tested with RHEL7/Fedora21/CentOS7
+  - Tested with RHEL7/Fedora21/CentOS7/Ubuntu14.04
 
 ---
 class: center, middle
@@ -247,7 +244,7 @@ oc new-app https://github.com/nak3/helloworld-v3.git -o json > resources.json
 
   - step-2. Make only one resource in json file
 ```area
-cat output.json  | jq .items[0] > imagestream.json
+cat resources.json | jq .items[0] > imagestream.json
 ```
 
   - step-3. Test with one resource
