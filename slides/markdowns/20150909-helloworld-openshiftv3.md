@@ -198,7 +198,7 @@ class: center, middle
 ![helloworld-process](./image/helloworld-process-updated-resource.png)
 
 ---
-# What's Resources
+# What resources are created
 
 - ImageStream
 
@@ -228,7 +228,9 @@ class: center, middle
 localStorage["OpenShiftLogLevel.main"] = "<log level>";
 ```
 
-- (Advanced) `debuginfo()` in source code
+- (Advanced) `debug.PrintStack()` in source code
+
+  - GDB was not good at this moment...
 
 ---
 # Tips for resources debug/hack
@@ -301,11 +303,11 @@ class: center, middle
 ---
 # Custom-builder-debug
 
-- You can download from here
+- You can download the sample from here
 
   - https://github.com/nak3/custom-builder-for-test/tree/master/custom-builder-debug
 
-- Just run for test
+- Or just run for test
 
 ```area
 oc create -f \
